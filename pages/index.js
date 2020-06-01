@@ -5,13 +5,23 @@ import AthleteInputs from '../components/AthleteInputs'
 import Button from '../components/Button'
 import {Rounds} from '../src/rounds'
 import Link from 'next/link'
+import Router from 'next/router'
+import Athlete from '../src/Athlete'
 
 const HomePage = () => {
     const [data, setData] = useState(initialData)
-
+    
     const blankAthlete = { name: '', ageCat: ''}
     const [athletes, setAthletes] = useState([{ ...blankAthlete }])
     const { setLocalStateRoundInformation } = useLocalState()
+    
+    const StartButton = React.forwardRef(({ onClick, href}, ref) => {
+        return (
+            <a href={href} onClick={onClick} ref={ref}>
+                Start Round
+            </a>
+        )
+    })
 
     function handleClick(round) {
         setData(round)
@@ -30,7 +40,13 @@ const HomePage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setLocalStateRoundInformation({ roundData: data, athletes })
+        var constructedAthletes = []
+        for (let i = 0; i < athletes.length; i++) {
+            constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat))
+        }
+        console.log(constructedAthletes[0].onDeck)
+        setLocalStateRoundInformation({ roundData: data, constructedAthletes })
+        Router.push('/timer')
     }
     
     // useEffect(() => {
@@ -78,9 +94,7 @@ const HomePage = () => {
                             />
                          ))
                     }
-                    <Link href='/timer'>
-                        <a onClick={handleSubmit}>Timer</a>
-                    </Link>
+                    <button onClick={handleSubmit}>Start round</button>
                 </form> 
             </div>
         <style global jsx>{`
@@ -126,6 +140,7 @@ const initialData = {
     restTime: 4,
     numAthletes: 10
 }
+
 
 
 export default HomePage

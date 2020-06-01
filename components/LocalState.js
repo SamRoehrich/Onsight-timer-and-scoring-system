@@ -5,7 +5,7 @@ const LocalStateContext = createContext()
 const LocalStateProvider = LocalStateContext.Provider
 
 function LocalState({children}) {
-    const [roundInformation, setRoundInformation] = useState({})
+    const [roundInformation, setRoundInformation] = useState({ })
 
     function setLocalStateRoundInformation(roundInfo) {
         setRoundInformation(roundInfo)
