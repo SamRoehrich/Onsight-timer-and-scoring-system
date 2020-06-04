@@ -1,9 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useLocalState } from './LocalState'
-
 const ScoreCard = ({ athlete }) => {
-
-    const { roundInformation } = useLocalState()
 
     return (
         <div className='score-card'>

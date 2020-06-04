@@ -1,27 +1,15 @@
-import { useState, useEffect } from 'react'
-
-import { useLocalState } from '../components/LocalState'
 import Scoring from '../components/Scoring'
 import Timer from '../components/Timer'
+import AthleteList from '../components/AthleteList'
 
 const TimerPage = () => {
-
-    const { roundInformation } = useLocalState()
-    const [activeClimbers, setActiveClimbers] = useState([])
-    const [onDeck, setOnDeck] = useState([])
-    const [nextOnDeck, setNextOnDeck] = useState(0)
-
-    function startRound() {
-        setOnDeck(roundInformation.athletes[0])
-        setNextOnDeck(nextOnDeck + 1)
-    }
-
     return (
         <div className='container'>
+            <AthleteList />
             <div className='timer-and-scoring'>
                 <Timer />
                 <div className='scoring'>
-                    <Scoring onDeck={onDeck} activeClimbers={activeClimbers} />
+                    <Scoring/>
                 </div>
             </div>
             <style jsx>
@@ -55,32 +43,3 @@ const TimerPage = () => {
 }
 
 export default TimerPage
-
-
-
-            {/* <div className='athlete-list'>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-                <div className='athlete-list-item'>
-                    <p>Name</p>
-                    <p>Age</p>
-                </div>
-            </div> */}

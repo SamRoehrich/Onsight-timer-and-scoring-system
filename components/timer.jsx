@@ -1,17 +1,33 @@
 import { useState, useEffect } from 'react'
+import { useLocalState } from './LocalState'
 
 const Timer = () => {
 
-    const [minutes, setMinutes] = useState(4)
+    const [minutes, setMinutes] = useState(1)
     const [seconds, setSeconds] = useState(0)
     const [isActive, setIsActive] = useState(false)
+    const { athletes,
+            inIso, setInIso,
+            onDeck, setOnDeck,
+            climbing, setClimbing,
+            setFinished    
+    } = useLocalState()
+
+    function startRound() {
+        setInIso([...athletes])
+        setOnDeck([athletes[0]])
+    }
 
     function toggle() {
+        if(!isActive) {
+            startRound()
+        }
         setIsActive(!isActive)
     }
 
     function reset() {
-        setMinutes(4)
+        setClimbing([...onDeck])
+        setMinutes(1)
         setSeconds(0)
     }
 
@@ -19,12 +35,12 @@ const Timer = () => {
     useEffect(() => {
         if(isActive) {
             if(seconds == 0) {
-                if(minutes > 0) {
-                    setSeconds(59)
-                    setMinutes(minutes - 1)
-                }
                 if(minutes == 0) {
                     reset()
+                }
+                if(minutes > 0) {
+                    setSeconds(10)
+                    setMinutes(minutes - 1)
                 }
             }
             if(seconds > 0) {

@@ -1,59 +1,55 @@
 export default function Athlete (name, ageCat) {
     this.name = name;
     this.ageCat = ageCat;
-    this.onDeck = false;
-    this.scores = {
-        boulder1: {
+    this.scores = [
+        {
+            boulder: 1,
             score: 0,
             attempts: 0
         },
-        boulder2: {
+        {
+            boulder: 2,
             score: 0,
             attempts: 0
         },
-        boulder3: {
+        {
+            boulder: 3,
             score: 0,
             attempts: 0
         },
-        boulder4: {
+        {
+            boulder: 4,
             score: 0,
             attempts: 0
         },
-        boulder5: {
+        {
+            boulder: 5,
             score: 0,
             attempts: 0
         },
-        boulder6: {
+        {
+            boulder: 6,
             score: 0,
             attempts: 0
         },
-        superFinal: {
-            score: 0,
-            attempts: 0
-        },
-        superFinal2: {
-            score: 0,
-            attempts: 0
-        },
-    };
-    this.inIso = true;
+    ];
     this.finalScore = 0;
-    this.position = 0;
+    this.bouldersClimbed = 0;
+    this.lastBoulder = false;
 }
 
-Athlete.prototype.onFloor = function () {
-    this.onDeck = true;
-    return !this.inIso;
-}
-
-Athlete.prototype.getScore = function () {
-    var total = 0;
-    for(let score in this.scores) {
-        total += score.score;
+Athlete.prototype.cycle = function() {
+    if(this.bouldersClimbed == 4) {
+        this.lastBoulder == true;
+        return
     }
-    return total;
+    if(this.bouldersClimbed < 4){
+        this.bouldersClimbed += 1;
+    }
+    this.onDeck = !this.onDeck;
 }
 
-Athlete.prototype.updateScore = function(boulder, score) {
-    
+Athlete.prototype.start = function() {
+    this.inIso == false;
+    this.onDeck == true;
 }

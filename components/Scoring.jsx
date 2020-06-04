@@ -1,16 +1,16 @@
 import { useLocalState } from './LocalState'
+import { useEffect, useRef } from 'react'
 
 import ScoreCard from "./ScoreCard"
 
-const Scoring = ({ activeClimbers }) => {
-    
-    console.log(activeClimbers)
-    
-
+const Scoring = () => {
+    let { climbing, onDeck, inIso } = useLocalState()
     return(
-        <div>
+        <div>  
             {
-                activeClimbers.map(athlete => <ScoreCard athlete={athlete} />)
+                climbing.map((climber, i) => (
+                    <ScoreCard athlete={climber} key={`athlete-${i}`} />
+                ))
             }
         </div>
     )

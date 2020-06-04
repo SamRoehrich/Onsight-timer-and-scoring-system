@@ -7,13 +7,14 @@ import {Rounds} from '../src/rounds'
 import Link from 'next/link'
 import Router from 'next/router'
 import Athlete from '../src/Athlete'
+import Round from '../src/Round'
 
 const HomePage = () => {
     const [data, setData] = useState(initialData)
     
     const blankAthlete = { name: '', ageCat: ''}
     const [athletes, setAthletes] = useState([{ ...blankAthlete }])
-    const { setLocalStateRoundInformation } = useLocalState()
+    const { setAthletes: localStateSetAthletes } = useLocalState()
     
     const StartButton = React.forwardRef(({ onClick, href}, ref) => {
         return (
@@ -44,8 +45,7 @@ const HomePage = () => {
         for (let i = 0; i < athletes.length; i++) {
             constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat))
         }
-        console.log(constructedAthletes[0].onDeck)
-        setLocalStateRoundInformation({ roundData: data, constructedAthletes })
+        localStateSetAthletes(constructedAthletes)
         Router.push('/timer')
     }
     
