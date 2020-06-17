@@ -3,7 +3,6 @@ import { useLocalState } from './LocalState'
 const AthleteList = () => {
 
     const { athletes } = useLocalState()
-    console.log(athletes)
     return (
         <>
             <div className='athlete-list'>

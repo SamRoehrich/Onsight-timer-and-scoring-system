@@ -9,7 +9,7 @@ const TimerPage = () => {
             <div className='timer-and-scoring'>
                 <Timer />
                 <div className='scoring'>
-                    <Scoring/>
+                    {/* <Scoring/> */}
                 </div>
             </div>
             <style jsx>

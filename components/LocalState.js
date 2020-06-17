@@ -5,12 +5,13 @@ const LocalStateContext = createContext()
 const LocalStateProvider = LocalStateContext.Provider
 
 function LocalState({children}) {
-    const [roundInformation, setRoundInformation] = useState({ })
+    const [roundInformation, setRoundInformation] = useState({})
     const [athletes, setAthletes] = useState([])
     const [inIso, setInIso] = useState([])
     const [onDeck, setOnDeck] = useState([])
     const [climbing, setClimbing] = useState([])
     const [finished, setFinished] = useState([])
+    const [nextIndex, setNextIndex] = useState(0)
 
     function setLocalStateRoundInformation(roundInfo) {
         setRoundInformation(roundInfo)
@@ -22,7 +23,8 @@ function LocalState({children}) {
         inIso, setInIso,
         onDeck, setOnDeck,
         climbing, setClimbing,
-        finished, setFinished
+        finished, setFinished,
+        nextIndex, setNextIndex
     }
 
     return <LocalStateProvider value={defaultValues}>

@@ -33,23 +33,41 @@ export default function Athlete (name, ageCat) {
             attempts: 0
         },
     ];
-    this.finalScore = 0;
+    this.startedClimbing = false;
     this.bouldersClimbed = 0;
     this.lastBoulder = false;
+    this.finalScore = 0;
 }
 
 Athlete.prototype.cycle = function() {
-    if(this.bouldersClimbed == 4) {
-        this.lastBoulder == true;
-        return
+    console.log('cycle called')
+    if(this.bouldersClimbed < 3) {
+        this.bouldersClimbed = this.bouldersClimbed + 1
+        return null
     }
-    if(this.bouldersClimbed < 4){
-        this.bouldersClimbed += 1;
+    if(this.bouldersClimbed === 3) {
+        this.bouldersClimbed = this.bouldersClimbed + 1;
+        this.lastBoulder === true;
+        return null
     }
-    this.onDeck = !this.onDeck;
 }
 
-Athlete.prototype.start = function() {
-    this.inIso == false;
-    this.onDeck == true;
+Athlete.prototype.getBouldersClimbed = function () {
+    return this.bouldersClimbed
+}
+
+Athlete.prototype.getLastBoulder = function () {
+    return this.lastBoulder
+}
+
+Athlete.prototype.setLastBoulder = function () {
+    this.lastBoulder == true
+}
+
+Athlete.prototype.getStartedClimbing = function () {
+    return this.startedClimbing
+}
+
+Athlete.prototype.setStartedClimbing = function () {
+    return !this.startedClimbing
 }
