@@ -5,32 +5,32 @@ export default function Athlete (name, ageCat) {
         {
             boulder: 1,
             score: 0,
-            attempts: 0
+            attempts: []
         },
         {
             boulder: 2,
             score: 0,
-            attempts: 0
+            attempts: []
         },
         {
             boulder: 3,
             score: 0,
-            attempts: 0
+            attempts: []
         },
         {
             boulder: 4,
             score: 0,
-            attempts: 0
+            attempts: []
         },
         {
             boulder: 5,
             score: 0,
-            attempts: 0
+            attempts: []
         },
         {
             boulder: 6,
             score: 0,
-            attempts: 0
+            attempts: []
         },
     ];
     this.startedClimbing = false;
