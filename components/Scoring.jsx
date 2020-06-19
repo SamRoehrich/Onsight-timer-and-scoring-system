@@ -1,21 +1,27 @@
 import { useLocalState } from './LocalState'
-import { useEffect, useRef } from 'react'
 
 import ScoreCard from "./ScoreCard"
 
 const Scoring = () => {
-    let { climbing, onDeck, inIso } = useLocalState()
+    let { reducerState } = useLocalState()
     return(
-        <div>  
+        <>
+        <div className='scoring'>  
             {
-                climbing.map((climber, i) => (
+                reducerState.climbing.length !== 0 &&
+                reducerState.climbing.map((climber, i) => (
                     <ScoreCard athlete={climber} key={`athlete-${i}`} />
                 ))
             }
         </div>
+        <style jsx>{`
+            .scoring {
+                display: flex;
+
+            }
+        `}</style>
+        </>
     )
 }
 
 export default Scoring
-
-//get index of active athlete from timer page and render scorecard for each athlete based on that index

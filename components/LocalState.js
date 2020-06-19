@@ -48,6 +48,7 @@ function reducer(state, action) {
             //get next climber
             let next = currentIso.shift()
             if(next !== undefined) {
+                next.setStartedClimbing()
                 modifiedClimbing = [...modifiedClimbing, next]
             }
             return {

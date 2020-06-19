@@ -41,14 +41,27 @@ export default function Athlete (name, ageCat) {
 
 Athlete.prototype.cycle = function() {
     console.log('cycle called')
+    //calc score for boulder
+    if(this.scores[this.bouldersClimbed].attempts.length > 0) {
+        if(this.scores[this.bouldersClimbed].attempts[0].score == 25) {
+            this.scores[this.bouldersClimbed].score = 25
+        } else {
+            let curScore = this.scores[this.bouldersClimbed].attempts[0].score
+            for(let i = 1; i < this.scores[this.bouldersClimbed].attempts.length; i++) {
+                if(this.scores[this.bouldersClimbed].attempts[i].score > curScore) {
+                    curScore = this.scores[this.bouldersClimbed].attempts[i].score - (i / 10)
+                } 
+            }
+            this.scores[this.bouldersClimbed].score = curScore
+        }
+    }
+    //increment boulders climbed by one
     if(this.bouldersClimbed < 3) {
         this.bouldersClimbed = this.bouldersClimbed + 1
-        return null
     }
     if(this.bouldersClimbed === 3) {
         this.bouldersClimbed = this.bouldersClimbed + 1;
-        this.lastBoulder === true;
-        return null
+        this.lastBoulder = true;
     }
 }
 
