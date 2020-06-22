@@ -1,5 +1,5 @@
 import Scoring from '../components/Scoring'
-import Timer from '../components/Timer'
+import Timer from '../components/timer'
 import AthleteList from '../components/AthleteList'
 
 const TimerPage = () => {
