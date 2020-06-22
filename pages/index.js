@@ -55,35 +55,13 @@ const HomePage = () => {
 
     return (
         <div className='container'>
-            <div className='side-bar'>
-                <div onClick={() => handleClick(Rounds.BoulderOnsight4)}>
-                    <Button text='USAC Modified Redpoint'> </Button>
-                </div>
-                <Button text='3 Boulder Onsight'> </Button>
-                <Button text='USAC Boulder Onsight' query='4BoulderOnsight'> </Button>
-                <Button text='USAC Regionals' ></Button>
-                <Button text='IFSC Boulder Qualification' ></Button>
-                <Button text='USAC Sport Local Onsight' ></Button>
-                <Button text='USAC Sport Regionals' ></Button>
-                <Button text='USAC Sport Divisionals' ></Button>
-                <Button text='Custom Timer' ></Button>
-            </div>
             <div className='round-settings'>
-                <h3>{data.title}</h3>
+            <h1>USA Climbing Onsight Bouldering Timer</h1>
                 <form className='round-details'>
-                    <div className='item'>
-                        <span>Number of boulders: </span>
-                        <input placeholder={data.numBoulders} defaultValue={data.numBoulders}/>
+                    <div className='button-container'>
+                        <button onClick={addAthlete}>Add Athlete</button>
+                        <button onClick={handleSubmit}>Start round</button>
                     </div>
-                    <div className='item'>
-                        <span>Active Time: </span>
-                        <input placeholder={data.activeTime} defaultValue={data.activeTime}/>
-                    </div>
-                    <div className='item'>
-                        <span>Rest Time: </span>
-                        <input placeholder={data.restTime} defaultValue={data.restTime}/>
-                    </div>
-                    <button onClick={addAthlete}>Add Athlete</button>
                     {
                          athletes.map((val, idx) => (
                             <AthleteInputs
@@ -94,7 +72,6 @@ const HomePage = () => {
                             />
                          ))
                     }
-                    <button onClick={handleSubmit}>Start round</button>
                 </form> 
             </div>
         <style global jsx>{`
@@ -108,6 +85,15 @@ const HomePage = () => {
                 display: flex;
                 flex-wrap: wrap;
             }
+            .button-container {
+                display: flex;
+                justify-content: center;
+            }
+            .round-details {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
             .side-bar {
                 width: 20%;
                 height: 100vh;
@@ -120,7 +106,7 @@ const HomePage = () => {
                 display: flex;
                 flex-direction: column;
                 background-color: white;
-                width: 80%;
+                width: 100vw;
                 height: 100vh;
                 align-items: center;
             }

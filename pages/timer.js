@@ -1,24 +1,13 @@
-import { useEffect } from 'react'
-
-import { useLocalState } from '../components/LocalState'
 import Scoring from '../components/Scoring'
 import Timer from '../components/Timer'
 import AthleteList from '../components/AthleteList'
-import RoundControl from '../components/RoundControl'
 
 const TimerPage = () => {
-    const { athletes, dispatch } = useLocalState()
-    
-    // useEffect(() => {
-    //     console.log('effectCalled')
-    //     dispatch({ type: 'start-round', payload: athletes})
-    // })
     return (
         <div className='container'>
             <AthleteList />
             <div className='timer-and-scoring'>
                 <Timer />
-                <RoundControl />
                 <Scoring />
             </div>
             <style jsx>
@@ -31,6 +20,7 @@ const TimerPage = () => {
                     .timer-and-scoring {
                         display: flex;
                         flex-direction: column;
+                        align-items: center;
                     }
                     .timer {
                         display: flex;

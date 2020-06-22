@@ -15,7 +15,9 @@ const initialState = {
 function reducer(state, action) {
     switch(action.type) {
         case "start-round":
-            return { ...state, athletes: action.payload, inIso: action.payload};
+            let athletes = action.payload
+            athletes.forEach(athlete => athlete.inIso = true)
+            return { ...state, athletes, inIso: athletes};
         case 'remove-climber-from-iso':
             let currentIso = []
             state.inIso.forEach(climber => currentIso.push(climber))
@@ -39,11 +41,16 @@ function reducer(state, action) {
             //modify current climbers
             currentClimbing.map(climber => climber.cycle())
             currentClimbing.forEach(climber => {
-                if(climber.bouldersClimbed == 4) {
+                if(climber.finished) {
+                    climber.climbing = false
                     currentFinished = [...currentFinished, climber]
                 } else {
                     modifiedClimbing.push(climber)
                 }
+            })
+            currentOnDeck.forEach(climber => {
+                climber.climbing = true;
+                climber.onDeck = false;
             })
             //get next climber
             let next = currentIso.shift()

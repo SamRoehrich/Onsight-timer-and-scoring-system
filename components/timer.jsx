@@ -8,6 +8,10 @@ const Timer = () => {
     const roundStarted = useRef()
     const { dispatch, athletes } = useLocalState()
 
+    function openNewTab() {
+        window.open('/results', "_blank")
+    }
+
     function startRound() {
         roundStarted.current = new Boolean(true);
         dispatch({ type: 'start-round', payload: athletes})
@@ -51,6 +55,7 @@ const Timer = () => {
     <div className='timer'>
         <h1>{minutes} : {seconds < 10 ? `0${seconds}` : seconds}</h1>
         <button onClick={toggle}>{isActive ? 'Stop timer' : 'Start timer'}</button>
+        <button onClick={() => openNewTab()}>Open Results</button>
     </div>
     <style jsx>{`
         .timer{
