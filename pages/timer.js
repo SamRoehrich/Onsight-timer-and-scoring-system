@@ -1,14 +1,19 @@
 import Scoring from '../components/Scoring'
 import Timer from '../components/timer'
 import AthleteList from '../components/AthleteList'
+import Results from '../components/Results'
+import { useLocalState } from '../components/LocalState'
 
 const TimerPage = () => {
+
+    const { reducerState } = useLocalState()
     return (
         <div className='container'>
             <AthleteList />
             <div className='timer-and-scoring'>
-                <Timer />
-                <Scoring />
+                    <Timer />
+                    {reducerState.finished.length == reducerState.athletes.length && reducerState.athletes.length > 0 ? <Results /> : ''}
+                    <Scoring />
             </div>
             <style jsx>
                 {`

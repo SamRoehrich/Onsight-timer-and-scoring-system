@@ -17,7 +17,6 @@ const Scoring = () => {
         <style jsx>{`
             .scoring {
                 display: flex;
-
             }
         `}</style>
         </>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 const AthleteInputs = ({ idx, athletes, handleAthleteInputChange}) => {
     const athleteId = `name-${idx}`
     const ageId = `age-${idx}`
+    const genderId = `gender-${idx}`
     return (
         <div key={`athlete-${idx}`}>
             <label htmlFor={athleteId}>{`Athlete ${idx + 1}`}</label>
@@ -23,6 +24,16 @@ const AthleteInputs = ({ idx, athletes, handleAthleteInputChange}) => {
                 id={ageId}
                 className='ageCat'
                 value={athletes[idx].ageCat}
+                onChange={handleAthleteInputChange}
+            />
+            <label htmlFor={genderId}>Gender (M/F)</label>
+            <input
+                type='text'
+                name={genderId}
+                data-idx={idx}
+                id={genderId}
+                className='gender'
+                value={athletes[idx].gender}
                 onChange={handleAthleteInputChange}
             />
         </div>

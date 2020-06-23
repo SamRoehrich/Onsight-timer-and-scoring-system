@@ -65,6 +65,25 @@ function reducer(state, action) {
                 inIso: currentIso,
                 finished: currentFinished
             };
+        case 'calculate-round-scores':
+            let finishedAthletes = [...state.athletes]
+            let males = []
+            let females = []
+            finishedAthletes.forEach(climber => {
+                climber.calculateFinalScore()
+                climber.gender === "M" ? males.push(climber) : females.push(climber)
+            })
+    
+            males.sort(climber => climber.ageCat)
+            males.sort((a,b) => (b.finalScore > a.finalScore) ? 1 : -1)
+    
+            females.sort(climber => climber.ageCat)
+            females.sort((a,b) => (b.finalScore > a.finalScore) ? 1 : -1)
+            return {
+                ...state,
+                males,
+                females
+            }
         case 'reset':
             state = initialState
             return {

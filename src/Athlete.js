@@ -1,6 +1,7 @@
-export default function Athlete (name, ageCat) {
+export default function Athlete (name, ageCat, gender) {
     this.name = name;
     this.ageCat = ageCat;
+    this.gender = gender;
     this.scores = [
         {
             boulder: 1,
@@ -44,7 +45,6 @@ export default function Athlete (name, ageCat) {
 }
 
 Athlete.prototype.cycle = function() {
-    console.log('cycle called')
     //calc score for boulder
     if(this.scores[this.bouldersClimbed].attempts.length > 0) {
         if(this.scores[this.bouldersClimbed].attempts[0].score == 25) {
@@ -59,19 +59,6 @@ Athlete.prototype.cycle = function() {
             this.scores[this.bouldersClimbed].score = curScore
         }
     }
-    // if(this.lastBoulder) {
-    //     this.finished = true
-    // } else {
-    //     this.onDeck = true;
-    // }
-    // this.climbing = false;
-    //increment boulders climbed by one
-    // if(this.bouldersClimbed < 4) {
-    //     this.bouldersClimbed = this.bouldersClimbed + 1
-    // }
-    // if(this.bouldersClimbed === 4) {
-    //     this.finished = true;
-    // }
 
     this.bouldersClimbed < 3 ? this.bouldersClimbed += 1 : this.finished = true
     
@@ -103,4 +90,10 @@ Athlete.prototype.setStartedClimbing = function () {
     this.startedClimbing = true
     this.onDeck = true
     this.inIso = false
+}
+
+Athlete.prototype.calculateFinalScore = function () {
+    let final = 0
+    this.scores.forEach(score => final += score.score)
+    this.finalScore = final
 }

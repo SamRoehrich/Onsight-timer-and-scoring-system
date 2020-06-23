@@ -6,11 +6,7 @@ const Timer = () => {
     const [seconds, setSeconds] = useState(0)
     const [isActive, setIsActive] = useState(false)
     const roundStarted = useRef()
-    const { dispatch, athletes } = useLocalState()
-
-    function openNewTab() {
-        window.open('/results', "_blank")
-    }
+    const { dispatch, athletes, reducerState } = useLocalState()
 
     function startRound() {
         roundStarted.current = new Boolean(true);
@@ -27,6 +23,7 @@ const Timer = () => {
     }
     
     function timerReset() {
+        if(athletes.length == reducerState.finished.length) return null
         setMinutes(1)
         setSeconds(0)
         dispatch({ type: 'transition-climbers' })
@@ -55,7 +52,6 @@ const Timer = () => {
     <div className='timer'>
         <h1>{minutes} : {seconds < 10 ? `0${seconds}` : seconds}</h1>
         <button onClick={toggle}>{isActive ? 'Stop timer' : 'Start timer'}</button>
-        <button onClick={() => openNewTab()}>Open Results</button>
     </div>
     <style jsx>{`
         .timer{

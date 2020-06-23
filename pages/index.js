@@ -1,32 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import { useLocalState } from '../components/LocalState'
 import AthleteInputs from '../components/AthleteInputs'
-import Button from '../components/Button'
-import {Rounds} from '../src/rounds'
-import Link from 'next/link'
 import Router from 'next/router'
 import Athlete from '../src/Athlete'
-import Round from '../src/Round'
 
 const HomePage = () => {
-    const [data, setData] = useState(initialData)
     
-    const blankAthlete = { name: '', ageCat: ''}
+    const blankAthlete = { name: '', ageCat: '', gender: '' }
     const [athletes, setAthletes] = useState([{ ...blankAthlete }])
     const { setAthletes: localStateSetAthletes } = useLocalState()
-    
-    const StartButton = React.forwardRef(({ onClick, href}, ref) => {
-        return (
-            <a href={href} onClick={onClick} ref={ref}>
-                Start Round
-            </a>
-        )
-    })
-
-    function handleClick(round) {
-        setData(round)
-    }
 
     const addAthlete = (e) => {
         e.preventDefault()
@@ -43,15 +26,11 @@ const HomePage = () => {
         e.preventDefault()
         var constructedAthletes = []
         for (let i = 0; i < athletes.length; i++) {
-            constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat))
+            constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat, athletes[i].gender.toUpperCase()))
         }
         localStateSetAthletes(constructedAthletes)
         Router.push('/timer')
     }
-    
-    // useEffect(() => {
-    //     const athleteInputForm = buildAthleteList(initialData.numAthletes)
-    // }, [initialData])
 
     return (
         <div className='container'>

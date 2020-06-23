@@ -29,9 +29,8 @@ const AthleteList = () => {
             <style jsx>
             {`
                 .athlete-list {
-                    width: 20%;
-                    height: 100vh;
-                    border: 1px solid black;
+                    width: 15%;
+                    height: 100%;
                 }
                 .athlete-card {
                     display: flex;
