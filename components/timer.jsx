@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useLocalState } from './LocalState'
 
 const Timer = () => {
-    const [minutes, setMinutes] = useState(1)
+    const [minutes, setMinutes] = useState(4)
     const [seconds, setSeconds] = useState(0)
     const [isActive, setIsActive] = useState(false)
     const roundStarted = useRef()
@@ -24,7 +24,7 @@ const Timer = () => {
     
     function timerReset() {
         if(athletes.length == reducerState.finished.length) return null
-        setMinutes(1)
+        setMinutes(4)
         setSeconds(0)
         dispatch({ type: 'transition-climbers' })
     }
@@ -37,7 +37,7 @@ const Timer = () => {
                     timerReset()
                 }
                 if(minutes > 0) {
-                    setSeconds(10)
+                    setSeconds(59)
                     setMinutes(minutes - 1)
                 }
             }
