@@ -57,6 +57,7 @@ const Timer = () => {
         .timer{
             display: flex;
             justify-content: center;
+            margin: 0 auto;
             flex-direction: column;
             align-items: center;
         }

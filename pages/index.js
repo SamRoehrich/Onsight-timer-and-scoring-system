@@ -24,12 +24,17 @@ const HomePage = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        var constructedAthletes = []
-        for (let i = 0; i < athletes.length; i++) {
-            constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat, athletes[i].gender.toUpperCase()))
+        if(athletes.length < 2) {
+            alert('You must have at least one athlete')
+            return null
+        } else {
+            var constructedAthletes = []
+            for (let i = 0; i < athletes.length; i++) {
+                constructedAthletes.push(new Athlete(athletes[i].name, athletes[i].ageCat, athletes[i].gender.toUpperCase()))
+            }
+            localStateSetAthletes(constructedAthletes)
+            Router.push('/timer')
         }
-        localStateSetAthletes(constructedAthletes)
-        Router.push('/timer')
     }
 
     return (
